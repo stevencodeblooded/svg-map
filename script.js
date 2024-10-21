@@ -8,23 +8,16 @@ fetch('assets/map.svg')
   const points = container.querySelectorAll('.map-point'); // Select points with class 'map-point'
   const popup = document.getElementById('popup'); // Reference to the popup element
 
-  // Check if points are found
-  console.log(`Found ${points.length} map points.`);
-
   // Add event listeners to each point
   points.forEach(point => {
     point.addEventListener('mouseenter', (event) => {
       const pointId = event.target.id; // Get the point's ID
       const placeName = pointId.replace('label-', ''); // Extract the place name
-      const imagePath = `${window.location.origin}/assets/${placeName}.svg`;
-      console.log(`Attempting to load image at: ${imagePath}`);
-      
 
       // Set the popup content with the image
       popup.innerHTML = `<img src="assets/${placeName}.svg" class="popup-image" alt="${placeName}">`; 
       popup.style.display = 'block'; // Show popup
       updatePopupPosition(event); // Update popup position
-      console.log(`Showing popup for: ${placeName}`);
     });
 
     point.addEventListener('mousemove', (event) => {
